@@ -166,6 +166,7 @@ namespace DanfeSharp.Modelo
         /// Mapeia para <c>det/DFeReferenciado/nItem</c>.</para>
         /// </summary>
         public int? NumeroItemReferenciado { get; set; }
+        public string NFCI {get;set;}
 
         public ProdutoViewModel()
         {
@@ -208,6 +209,10 @@ namespace DanfeSharp.Modelo
                     {
                         descriCaoCompleta += " — item " + NumeroItemReferenciado.Value;
                     }
+                }
+                if(!string.IsNullOrWhiteSpace(NFCI))
+                {
+                    descriCaoCompleta += "\r\nnFCI: " + NFCI;
                 }
 
                 return descriCaoCompleta;

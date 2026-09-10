@@ -36,8 +36,8 @@ namespace DanfeSharp
         public DanfeCartaCorrecao(DanfeEventoViewModel viewModel, string creditos = null, string metadataCriador = null)
         {
 
-            _creditos = creditos ?? "Impresso com DanfeSharp";
-            _metadataCriador = metadataCriador ?? String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
+            _creditos = creditos ?? "Impresso com JaguarDFe";
+            _metadataCriador = metadataCriador ?? String.Format("{0} {1} - {2}", "JaguarDFe", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
 
 
             ViewModel = viewModel ?? throw new ArgumentNullException(nameof(viewModel));

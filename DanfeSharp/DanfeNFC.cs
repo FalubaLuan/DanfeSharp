@@ -76,8 +76,8 @@ namespace DanfeSharp
             // 2. Create a content composer for the page!
             _primitiveComposer = new PrimitiveComposer(_page);
 
-            _creditos = creditos ?? "Impresso com DanfeSharp";
-            _metadataCriador = metadataCriador ?? String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
+            _creditos = creditos ?? "Impresso com JaguarDFe";
+            _metadataCriador = metadataCriador ?? String.Format("{0} {1} - {2}", "JaguarDFe", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
 
             // De acordo com o item 7.7, a fonte deve ser Times New Roman ou Courier New.
             _FonteFamilia = StandardType1Font.FamilyEnum.Helvetica;

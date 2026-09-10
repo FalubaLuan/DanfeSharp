@@ -297,6 +297,7 @@ namespace DanfeSharp.Modelo
                 produto.Quantidade = det.prod.qCom;
                 produto.ValorUnitario = det.prod.vUnCom;
                 produto.ValorTotal = det.prod.vProd;
+                produto.NFCI = det.prod.nFCI;
 
                 model.Produtos.Add(produto);
             }
@@ -471,6 +472,7 @@ namespace DanfeSharp.Modelo
                 produto.ValorUnitario = det.prod.vUnCom;
                 produto.ValorTotal = det.prod.vProd;
                 produto.InformacoesAdicionais = det?.infAdProd?.Replace("\\n", "\n");
+                produto.NFCI = det.prod.nFCI;
 
                 // Para Nota de Crédito por Recusa Parcial (Ajuste SINIEF 8/26),
                 // cada item pode referenciar um item específico da NF-e original

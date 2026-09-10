@@ -135,7 +135,7 @@ namespace DanfeSharp
                 AlinhamentoHorizontal = AlinhamentoHorizontal.Centro
             }
             .AddLine("Nº.: " + ViewModel.NfNumero.ToString(Formatador.FormatoNumeroNF), f4)
-            .AddLine($"Série: {ViewModel.NfSerie}", f4);
+            .AddLine($"Série: {ViewModel.NfSerie.ToString("D3")}", f4);
 
             ts.Draw(gfx);
 

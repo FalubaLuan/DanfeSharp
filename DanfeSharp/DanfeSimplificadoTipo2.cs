@@ -52,8 +52,8 @@ namespace DanfeSharp
 
             _size = new SizeF(Width, EstimarAltura(viewModel));
 
-            _creditos = creditos ?? "Impresso com DanfeSharp";
-            _metadataCriador = metadataCriador ?? String.Format("{0} {1} - {2}", "DanfeSharp", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
+            _creditos = creditos ?? "Impresso com JaguarDFe";
+            _metadataCriador = metadataCriador ?? String.Format("{0} {1} - {2}", "JaguarDFe", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version, "https://github.com/SilverCard/DanfeSharp");
 
             _FonteFamilia = StandardType1Font.FamilyEnum.Helvetica;
             _FonteRegular = new StandardType1Font(PdfDocument, _FonteFamilia, false, false);

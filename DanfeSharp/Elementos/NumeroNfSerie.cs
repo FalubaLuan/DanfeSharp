@@ -34,7 +34,7 @@ namespace DanfeSharp
                 LineHeightScale = 1F
             }
             .AddLine($"Nº.: {NfNumero}", f2)
-            .AddLine($"Série: {NfSerie}", f2);
+            .AddLine($"Série: {NfSerie.PadLeft(3, '0')}", f2);
 
             ts.Draw(gfx);
 

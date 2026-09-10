@@ -36,7 +36,7 @@ namespace DanfeSharp.Blocos
                 .ComCampoNumerico(Strings.Quantidade, transportadora.QuantidadeVolumes, 3)
                 .ComCampo("Espécie", transportadora.Especie)
                 .ComCampo("Marca", transportadora.Marca)
-                .ComCampo("Numeração", transportadora.Numeracao)
+                .ComCampo("Numeração", transportadora.Numeracao != "0" ? transportadora.Numeracao : "")
                 .ComCampoNumerico("Peso Bruto", transportadora.PesoBruto, 3)
                 .ComCampoNumerico("Peso Líquido", transportadora.PesoLiquido, 3)
                 .ComLarguras(20F / 200F * 100, 0, 0, l, l, l);
