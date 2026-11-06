@@ -37,7 +37,7 @@ namespace DanfeSharp.Modelo
             if (procNfe == null) throw new ArgumentNullException(nameof(procNfe));
 
             var infNfe = procNfe.NFe.infNFe;
-            var model = new ReformaTributariaViewModel { Crt = infNfe.emit?.CRT };
+            var model = new ReformaTributariaViewModel { Crt = infNfe.emit?.CRT, QrCode = procNfe.NFe.infNFeSupl?.qrCode };
 
             foreach (var det in infNfe.det)
                 model.Itens.Add(CriarItem(det.imposto, det.imposto?.IPI?.IPITrib));

@@ -1,11 +1,11 @@
 ﻿using DanfeSharp;
 using DanfeSharp.Modelo;
 
-var xmlPath = @"C:\Users\luan\Downloads\31260905955933000156550010000064141046403276.xml";
+var xmlPath = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "XmlPath", "NFe_NT2026010_Facultativos_Ficticia.xml");;
+var xml = File.ReadAllText(xmlPath);
+var model = DanfeViewModelCreator.CriarDeStringXml(xml);
+var reforma = ReformaTributariaViewModelCreator.CriarDeStringXml(xml);
 
-var model = DanfeViewModelCreator.CriarDeArquivoXml(xmlPath);
-model.IsCancelled = true;
-
-using var danfe = new Danfe(model);
+using var danfe = new DanfeReformaTributaria(model, reforma);
 danfe.Gerar();
-danfe.Salvar(Path.Combine(Path.GetDirectoryName(xmlPath), "pdf.pdf"));
+danfe.Salvar("saida.pdf");

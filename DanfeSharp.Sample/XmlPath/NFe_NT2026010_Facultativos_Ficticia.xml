@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- XML FICTÍCIO para testar o leiaute da NT 2026.010 (DANFE Reforma Tributária).
+     Baseado na NF-e 31261123220759000185550040009376271394422611, sem assinatura (inválido para uso fiscal).
+     Preenche os campos facultativos: FCP/FCP ST/DIFAL/FCP UF dest, ICMS monofásico, IBS/CBS/IS (com gRed),
+     IBS/CBS monofásicos, ISSQN, transportador completo, duplicatas e QR Code. -->
+<nfeProc versao="4.00" xmlns="http://www.portalfiscal.inf.br/nfe">
+  <NFe xmlns="http://www.portalfiscal.inf.br/nfe">
+    <infNFe versao="4.00" Id="NFe31261123220759000185550040009376271394422611">
+      <ide>
+        <cUF>31</cUF><cNF>39442261</cNF><natOp>5160 VENDA EM ATO COOPERATIVO</natOp><mod>55</mod><serie>4</serie><nNF>937627</nNF>
+        <dhEmi>2026-11-06T07:36:13-03:00</dhEmi><dhSaiEnt>2026-11-06T09:15:00-03:00</dhSaiEnt><tpNF>1</tpNF><idDest>1</idDest>
+        <cMunFG>3147402</cMunFG><tpImp>1</tpImp><tpEmis>1</tpEmis><cDV>1</cDV><tpAmb>1</tpAmb><finNFe>1</finNFe>
+        <indFinal>0</indFinal><indPres>0</indPres><procEmi>0</procEmi><verProc>9.10.2.0</verProc>
+      </ide>
+      <emit>
+        <CNPJ>23220759000185</CNPJ><xNome>COOP AGROP IND E CON DE PBA LTDA</xNome><xFant>COOP AGROP IND E CON DE PBA LTDA</xFant>
+        <enderEmit>
+          <xLgr>PCA. CEL. BERNARDINO, 50</xLgr><nro>00050</nro><xBairro>CENTRO</xBairro><cMun>3147402</cMun><xMun>PARAOPEBA</xMun>
+          <UF>MG</UF><CEP>35774000</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>3137141595</fone>
+        </enderEmit>
+        <IE>4740698040003</IE><IEST>0620012340098</IEST><IM>123456</IM><CRT>3</CRT>
+      </emit>
+      <dest>
+        <CNPJ>19221787000140</CNPJ><xNome>PALMEIRAS EMPREENDIMENTOS AGROP. LTDA ME A 01393 J</xNome>
+        <enderDest>
+          <xLgr>PALMEIRAS EMPREENDIMENTOS AGRO</xLgr><nro>S/N</nro><xBairro>ZONA RURAL</xBairro><cMun>3147402</cMun><xMun>PARAOPEBA</xMun>
+          <UF>MG</UF><CEP>35774000</CEP><cPais>1058</cPais><xPais>BRASIL</xPais><fone>3137145500</fone>
+        </enderDest>
+        <indIEDest>1</indIEDest><IE>0015360010002</IE>
+      </dest>
+
+      <!-- Item 1: ICMS normal, IPI tributado, IBS/CBS com redução (gRed => alíquota efetiva) e Imposto Seletivo -->
+      <det nItem="1">
+        <prod>
+          <cProd>16594</cProd><cEAN>SEM GTIN</cEAN><xProd>TELA VIVEIRO 1,50 FIO 24</xProd><NCM>73144100</NCM><CEST>1005300</CEST>
+          <CFOP>5160</CFOP><uCom>MT</uCom><qCom>50.0000</qCom><vUnCom>18.900000</vUnCom><vProd>945.00</vProd>
+          <cEANTrib>SEM GTIN</cEANTrib><uTrib>MT</uTrib><qTrib>50.0000</qTrib><vUnTrib>18.900000</vUnTrib><vDesc>141.50</vDesc><indTot>1</indTot>
+        </prod>
+        <imposto>
+          <vTotTrib>131.94</vTotTrib>
+          <ICMS><ICMS00><orig>0</orig><CST>00</CST><modBC>3</modBC><vBC>803.50</vBC><pICMS>12.00</pICMS><vICMS>96.42</vICMS></ICMS00></ICMS>
+          <IPI><cEnq>999</cEnq><IPITrib><CST>50</CST><vBC>803.50</vBC><pIPI>5.00</pIPI><vIPI>40.18</vIPI></IPITrib></IPI>
+          <PIS><PISNT><CST>07</CST></PISNT></PIS>
+          <COFINS><COFINSNT><CST>07</CST></COFINSNT></COFINS>
+          <IS>
+            <CSTIS>000</CSTIS><cClassTribIS>000001</cClassTribIS><vBCIS>803.50</vBCIS><pIS>1.5000</pIS><vIS>12.05</vIS>
+          </IS>
+          <IBSCBS>
+            <CST>200</CST><cClassTrib>200003</cClassTrib>
+            <gIBSCBS>
+              <vBC>803.50</vBC>
+              <gIBSUF><pIBSUF>0.1000</pIBSUF><gRed><pRedAliq>50.0000</pRedAliq><pAliqEfet>0.0500</pAliqEfet></gRed><vIBSUF>0.40</vIBSUF></gIBSUF>
+              <gIBSMun><pIBSMun>0.0500</pIBSMun><vIBSMun>0.40</vIBSMun></gIBSMun>
+              <vIBS>0.80</vIBS>
+              <gCBS><pCBS>0.9000</pCBS><vCBS>7.23</vCBS></gCBS>
+            </gIBSCBS>
+          </IBSCBS>
+        </imposto>
+        <infAdProd>Item de teste de leiaute - Expedicao : 318610</infAdProd>
+      </det>
+
+      <!-- Item 2: ICMS60 (CST 060), IBS/CBS sem redução (alíquota vigente), sem IS e sem IPI -->
+      <det nItem="2">
+        <prod>
+          <cProd>20817</cProd><cEAN>SEM GTIN</cEAN><xProd>CONECTOR DE MANGUEIRA 1/2"</xProd><NCM>39174090</NCM><CEST>1005300</CEST>
+          <CFOP>5160</CFOP><uCom>UN</uCom><qCom>10.0000</qCom><vUnCom>12.500000</vUnCom><vProd>125.00</vProd>
+          <cEANTrib>SEM GTIN</cEANTrib><uTrib>UN</uTrib><qTrib>10.0000</qTrib><vUnTrib>12.500000</vUnTrib><indTot>1</indTot>
+        </prod>
+        <imposto>
+          <vTotTrib>18.75</vTotTrib>
+          <ICMS><ICMS60><orig>0</orig><CST>60</CST><vBCSTRet>0.00</vBCSTRet><pST>0.00</pST><vICMSSubstituto>0.00</vICMSSubstituto><vICMSSTRet>0.00</vICMSSTRet></ICMS60></ICMS>
+          <IPI><cEnq>999</cEnq><IPINT><CST>53</CST></IPINT></IPI>
+          <PIS><PISNT><CST>07</CST></PISNT></PIS>
+          <COFINS><COFINSNT><CST>07</CST></COFINSNT></COFINS>
+          <IBSCBS>
+            <CST>000</CST><cClassTrib>000001</cClassTrib>
+            <gIBSCBS>
+              <vBC>125.00</vBC>
+              <gIBSUF><pIBSUF>0.1000</pIBSUF><vIBSUF>0.13</vIBSUF></gIBSUF>
+              <gIBSMun><pIBSMun>0.0500</pIBSMun><vIBSMun>0.06</vIBSMun></gIBSMun>
+              <vIBS>0.19</vIBS>
+              <gCBS><pCBS>0.9000</pCBS><vCBS>1.13</vCBS></gCBS>
+            </gIBSCBS>
+          </IBSCBS>
+        </imposto>
+      </det>
+
+      <total>
+        <ICMSTot>
+          <vBC>803.50</vBC><vICMS>96.42</vICMS><vICMSDeson>0.00</vICMSDeson>
+          <vFCPUFDest>1.50</vFCPUFDest><vICMSUFDest>12.00</vICMSUFDest><vICMSUFRemet>0.00</vICMSUFRemet>
+          <vFCP>5.00</vFCP><vBCST>0.00</vBCST><vST>0.00</vST><vFCPST>2.00</vFCPST><vFCPSTRet>0.00</vFCPSTRet>
+          <qBCMono>10.00</qBCMono><vICMSMono>15.00</vICMSMono>
+          <qBCMonoReten>8.00</qBCMonoReten><vICMSMonoReten>12.00</vICMSMonoReten>
+          <vProd>1070.00</vProd><vFrete>0.00</vFrete><vSeg>0.00</vSeg><vDesc>141.50</vDesc><vII>0.00</vII><vIPI>40.18</vIPI>
+          <vIPIDevol>0.00</vIPIDevol><vPIS>0.00</vPIS><vCOFINS>0.00</vCOFINS><vOutro>0.00</vOutro><vNF>968.68</vNF><vTotTrib>150.69</vTotTrib>
+        </ICMSTot>
+        <ISSQNtot><vServ>200.00</vServ><vBC>200.00</vBC><vISS>10.00</vISS><dCompet>2026-11-06</dCompet></ISSQNtot>
+        <ISTot><vIS>12.05</vIS></ISTot>
+        <IBSCBSTot>
+          <vBCIBSCBS>928.50</vBCIBSCBS>
+          <gIBS>
+            <gIBSUF><vDif>0.00</vDif><vDevTrib>0.00</vDevTrib><vIBSUF>0.53</vIBSUF></gIBSUF>
+            <gIBSMun><vDif>0.00</vDif><vDevTrib>0.00</vDevTrib><vIBSMun>0.46</vIBSMun></gIBSMun>
+            <vIBS>0.99</vIBS><vCredPres>0.00</vCredPres><vCredPresCondSus>0.00</vCredPresCondSus>
+          </gIBS>
+          <gCBS><vDif>0.00</vDif><vDevTrib>0.00</vDevTrib><vCBS>8.36</vCBS><vCredPres>0.00</vCredPres><vCredPresCondSus>0.00</vCredPresCondSus></gCBS>
+          <gMono><vIBSMono>3.20</vIBSMono><vCBSMono>1.10</vCBSMono><vIBSMonoReten>0.80</vIBSMonoReten><vCBSMonoReten>0.30</vCBSMonoReten><vIBSMonoRet>0.00</vIBSMonoRet><vCBSMonoRet>0.00</vCBSMonoRet></gMono>
+        </IBSCBSTot>
+        <vNFTot>968.68</vNFTot>
+      </total>
+
+      <transp>
+        <modFrete>0</modFrete>
+        <transporta>
+          <CNPJ>22222222000122</CNPJ><xNome>TRANSPORTADORA EXEMPLO LTDA</xNome><IE>3333333330033</IE>
+          <xEnder>ROD. EXEMPLO, KM 10</xEnder><xMun>BELO HORIZONTE</xMun><UF>MG</UF>
+        </transporta>
+        <veicTransp><placa>ABC1D23</placa><UF>MG</UF><RNTC>12345678</RNTC></veicTransp>
+        <vol><qVol>3</qVol><esp>VOLUMES</esp><marca>COAPA</marca><nVol>001</nVol><pesoL>120.500</pesoL><pesoB>128.750</pesoB></vol>
+      </transp>
+
+      <cobr>
+        <fat><nFat>937627</nFat><vOrig>968.68</vOrig><vDesc>0.00</vDesc><vLiq>968.68</vLiq></fat>
+        <dup><nDup>001</nDup><dVenc>2026-12-05</dVenc><vDup>322.90</vDup></dup>
+        <dup><nDup>002</nDup><dVenc>2027-01-05</dVenc><vDup>322.89</vDup></dup>
+        <dup><nDup>003</nDup><dVenc>2027-02-05</dVenc><vDup>322.89</vDup></dup>
+      </cobr>
+      <pag>
+        <detPag><tPag>15</tPag><vPag>968.68</vPag></detPag>
+        <vTroco>0.00</vTroco>
+      </pag>
+      <infAdic>
+        <infCpl>DOCUMENTO FICTICIO PARA TESTE DE LEIAUTE DA NT 2026.010 - SEM VALOR FISCAL. Vend:VICTOR FERREIRA - O.NF:01 - Loja:01 - Valor Total dos Tributos: R$ 150.69</infCpl>
+      </infAdic>
+      <infRespTec><CNPJ>07858433000121</CNPJ><xContato>Luis Aelto Vieira da Fonseca</xContato><email>luis@alfasig.com.br</email><fone>5421047600</fone></infRespTec>
+    </infNFe>
+    <infNFeSupl>
+      <qrCode><![CDATA[https://www.nfe.fazenda.gov.br/portal/consulta?p=31261123220759000185550040009376271394422611|3|1]]></qrCode>
+      <urlChave>www.nfe.fazenda.gov.br/portal/consulta.aspx</urlChave>
+    </infNFeSupl>
+  </NFe>
+  <protNFe versao="4.00">
+    <infProt>
+      <tpAmb>1</tpAmb><verAplic>W-3.4.47</verAplic><chNFe>31261123220759000185550040009376271394422611</chNFe>
+      <dhRecbto>2026-11-06T07:36:16-03:00</dhRecbto><nProt>131268063190594</nProt><digVal>lrH6ZFMoepJuTLTigSpy5dHlo+c=</digVal>
+      <cStat>100</cStat><xMotivo>Autorizado o uso da NF-e</xMotivo>
+    </infProt>
+  </protNFe>
+</nfeProc>

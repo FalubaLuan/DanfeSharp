@@ -11,7 +11,7 @@ namespace DanfeSharp.Blocos.ReformaTributaria
 {
     /// <summary>
     /// NT 2026.010 — "Dados Adicionais" com o QR Code (ZX02) ao lado das informações
-    /// complementares. O QR Code só é desenhado quando <see cref="DanfeViewModel.QrCode"/>
+    /// complementares. O QR Code só é desenhado quando o conteúdo informado
     /// está preenchido; sem ele o bloco fica igual ao clássico.
     /// </summary>
     internal class BlocoDadosAdicionaisRT : BlocoBase
@@ -24,7 +24,7 @@ namespace DanfeSharp.Blocos.ReformaTributaria
         private readonly CampoMultilinha _cInfComplementares;
         private readonly FlexibleLine _linha;
 
-        public BlocoDadosAdicionaisRT(DanfeViewModel viewModel, Estilo estilo, Document documento) : base(viewModel, estilo)
+        public BlocoDadosAdicionaisRT(DanfeViewModel viewModel, Estilo estilo, Document documento, string qrCode) : base(viewModel, estilo)
         {
             _cInfComplementares = new CampoMultilinha("Informações Complementares", ViewModel.TextoAdicional(), estilo);
             var cReservadoFisco = new CampoMultilinha("Reservado ao fisco", ViewModel.TextoReservadoFisco(), estilo);
@@ -33,13 +33,13 @@ namespace DanfeSharp.Blocos.ReformaTributaria
                 .ComElemento(_cInfComplementares)
                 .ComElemento(cReservadoFisco);
 
-            if (string.IsNullOrWhiteSpace(viewModel.QrCode))
+            if (string.IsNullOrWhiteSpace(qrCode))
             {
                 _linha.ComLarguras(75, 0);
             }
             else
             {
-                _linha.ComElemento(new ElementoQrCodeRT(estilo, CriarXObject(viewModel.QrCode, documento)));
+                _linha.ComElemento(new ElementoQrCodeRT(estilo, CriarXObject(qrCode, documento)));
                 _linha.ComLarguras(InfComplementaresLarguraPorcentagem, ReservadoFiscoLarguraPorcentagem, QrCodeLarguraPorcentagem);
             }
 

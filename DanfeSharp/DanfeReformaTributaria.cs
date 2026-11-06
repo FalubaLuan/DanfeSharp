@@ -87,7 +87,7 @@ namespace DanfeSharp
                 _Blocos.Add(new BlocoCalculoIssqnRT(ViewModel, EstiloPadrao));
 
             _Blocos.Add(new BlocoTransportador(ViewModel, EstiloPadrao));
-            _Blocos.Add(new BlocoDadosAdicionaisRT(ViewModel, CriarEstilo(tFonteCampoConteudo: 8), PdfDocument));
+            _Blocos.Add(new BlocoDadosAdicionaisRT(ViewModel, CriarEstilo(tFonteCampoConteudo: 8), PdfDocument, Reforma.QrCode ?? ViewModel.QrCode));
 
             AdicionarMetadata();
             _FoiGerado = false;

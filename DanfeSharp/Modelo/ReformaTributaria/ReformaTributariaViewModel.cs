@@ -15,6 +15,13 @@ namespace DanfeSharp.Modelo
         /// <summary>Totais IBS/CBS/IS e demais totais condicionais do bloco de totais.</summary>
         public TotaisReformaTributariaViewModel Totais { get; set; } = new TotaisReformaTributariaViewModel();
 
+        /// <summary>
+        /// Conteúdo do QR Code (qrCode — ZX02) lido do XML. O creator clássico não preenche
+        /// <see cref="DanfeViewModel.QrCode"/> para o modelo 55, então o DANFE RT usa este valor
+        /// quando o do DanfeViewModel está vazio.
+        /// </summary>
+        public string QrCode { get; set; }
+
         /// <summary>Código do Regime Tributário (CRT — C21).</summary>
         public string Crt { get; set; }
 
