@@ -65,6 +65,7 @@
     <Compile Include="FormatadorTests.cs" />
     <Compile Include="DanfeCanceladaTests.cs" />
     <Compile Include="DanfeSimplificadoTipo2Tests.cs" />
+    <Compile Include="DanfeReformaTributariaTests.cs" />
     <Compile Include="FormaPagamentoTests.cs" />
     <Compile Include="LogoTests.cs" />
     <Compile Include="ProdutoIcmsColumnTests.cs" />
