@@ -14,7 +14,7 @@ namespace DanfeSharp.Test
     [TestClass]
     public class DanfeCanceladaTests
     {
-        private const string MarcaDaguaCancelada = "DOCUMENTO CANCELADO";
+        private const string MarcaDaguaCancelada = "CANCELADA";
 
         public readonly string OutputDirectory = Path.Combine("Output", "DeCancelada");
         public readonly string InputXmlDirectoryPrefix = Path.Combine("Xml", "NFe");
@@ -97,7 +97,7 @@ namespace DanfeSharp.Test
 
             var texto = ExtrairTextoPdf(path);
             StringAssert.Contains(texto, MarcaDaguaCancelada,
-                "Conteúdo do PDF deve conter a marca d'água 'DOCUMENTO CANCELADO' quando IsCancelled=true.");
+                "Conteúdo do PDF deve conter a marca d'água 'CANCELADA' quando IsCancelled=true.");
         }
 
         [TestMethod]

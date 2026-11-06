@@ -111,23 +111,56 @@ namespace DanfeSharp
         }
 
         /// <summary>
-        /// Desenha marca d'água "DOCUMENTO CANCELADO" centralizada no corpo da
-        /// página. Padrão visual herdado de <see cref="DesenharAvisoHomologacao"/>
-        /// — mesma fonte 48pt, mesma cor cinza médio RGB(0.35, 0.35, 0.35).
-        /// Referência original: PR #8 do @mateuszanini (2023, branch
-        /// feature/aviso-cancelamento), commit f658489. Disparo agora vem da
-        /// flag <see cref="DanfeSharp.Modelo.DanfeViewModel.IsCancelled"/> em
-        /// vez do cStat=101 do XML — reflete a realidade do cancelamento via
-        /// evento separado em NF-e modelo 55.
+        /// Desenha marca d'água "CANCELADA" centralizada na página inteira, em
+        /// fonte grande e na diagonal (45°). Padrão visual herdado de
+        /// <see cref="DesenharAvisoHomologacao"/> — mesma cor cinza médio
+        /// RGB(0.35, 0.35, 0.35). Referência original: PR #8 do @mateuszanini
+        /// (2023, branch feature/aviso-cancelamento), commit f658489. Disparo
+        /// vem da flag <see cref="DanfeSharp.Modelo.DanfeViewModel.IsCancelled"/>
+        /// (ou do cStat=101 do XML) — ver spec danfe-cancelled-watermark.
         /// </summary>
         public void DesenharAvisoCancelamento()
         {
-            TextStack ts = new TextStack(RetanguloCorpo) { AlinhamentoVertical = AlinhamentoVertical.Centro, AlinhamentoHorizontal = AlinhamentoHorizontal.Centro, LineHeightScale = 0.9F }
-                        .AddLine("DOCUMENTO CANCELADO", Danfe.EstiloPadrao.CriarFonteRegular(48));
+            const string texto = "CANCELADA";
+            var fonte = Danfe.EstiloPadrao.CriarFonteRegular(90);
+            var largura = fonte.MedirLarguraTexto(texto).ToPoint();
 
+            var pivo = new PointF(Retangulo.X + Retangulo.Width / 2F, Retangulo.Y + Retangulo.Height / 2F);
+
+            // NOTA: o overload PrimitiveComposer.Rotate(angulo, origem) compõe a
+            // rotação com uma translação de retorno baseada na ALTURA DA PÁGINA em
+            // vez do pivô informado, jogando o texto pra fora da área visível
+            // (confirmado inspecionando os operadores "cm" do content stream
+            // gerado — a marca ficava presente no PDF, extraível por texto, mas
+            // invisível ao renderizar). Por isso a rotação em torno do pivô é
+            // montada manualmente aqui: Translate leva a origem local até o pivô e
+            // Rotate(angulo) (o overload de 1 argumento, sem esse bug) gira em
+            // torno dela.
+            //
+            // PrimitiveComposer.ShowText(texto, ponto) tem o MESMO tipo de bug: o Y
+            // do ponto é sempre tratado como coordenada absoluta de página (aplica
+            // "alturaDaPagina - y"), mesmo com o CTM já rotacionado/transladado —
+            // então um deslocamento local pequeno (p.ex. -altura/2, pra centralizar
+            // verticalmente) vira um valor gigantesco fora da página. Compensa-se
+            // pré-invertendo esse flip: passar (alturaDaPagina - yLocalDesejado) faz
+            // o flip interno devolver o yLocalDesejado correto.
             Gfx.PrimitiveComposer.BeginLocalState();
+            Gfx.PrimitiveComposer.Translate(pivo.X.ToPoint(), pivo.Y.ToPoint());
+            Gfx.PrimitiveComposer.Rotate(45);
             Gfx.PrimitiveComposer.SetFillColor(new org.pdfclown.documents.contents.colorSpaces.DeviceRGBColor(0.35, 0.35, 0.35));
-            ts.Draw(Gfx);
+            Gfx.SetFont(fonte);
+            // yLocalDesejado calibrado empiricamente medindo o bounding box do texto
+            // já renderizado (rasterizando o PDF): nem "-altura/2" (metade da altura
+            // de linha da fonte, que reserva espaço pra descendentes que "CANCELADA"
+            // não tem, por ser só caixa alta) nem 0 batem exatamente com o centro
+            // visual da tinta — ambos deixavam sobrar um desvio residual que, a 45°,
+            // vaza igualmente pros eixos X e Y da página (por isso a marca parecia
+            // "puxada pra direita"). Medindo o desvio em dois pontos de calibração
+            // (yLocalDesejado = -altura/2 e = 0) e extrapolando linearmente, o valor
+            // abaixo é o que zera o desvio do centro visual em relação ao pivô.
+            var alturaPaginaPt = Retangulo.Height.ToPoint();
+            const float yLocalDesejado = 26.73F;
+            Gfx.PrimitiveComposer.ShowText(texto, new PointF(-largura / 2F, alturaPaginaPt - yLocalDesejado));
             Gfx.PrimitiveComposer.End();
         }
 

@@ -221,8 +221,8 @@ namespace DanfeSharp.Modelo
 
         /// <summary>
         /// <para>Sinaliza que a NF-e foi cancelada — quando <c>true</c>, a DANFE
-        /// renderiza marca d'água "DOCUMENTO CANCELADO" centralizada em todas
-        /// as páginas.</para>
+        /// renderiza marca d'água "CANCELADA" centralizada, grande e na
+        /// diagonal em todas as páginas.</para>
         /// <para>Como o cancelamento em NF-e modelo 55 acontece via evento
         /// separado (NFeProcEvento, <c>tpEvento=110111</c>) e NÃO altera o
         /// <c>cStat</c> do XML da NF-e original (que permanece 100 — Autorizado),

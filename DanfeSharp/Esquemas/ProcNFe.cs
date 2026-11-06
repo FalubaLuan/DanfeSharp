@@ -403,9 +403,15 @@ namespace DanfeSharp.Esquemas.NFe
     {
         public IndicadorPagamentoDetalhePagamento? indPag { get; set; }
         /// <summary>
-        /// YA02 - Forma de pagamento
+        /// YA02 - Forma de pagamento. Tipado como string (não como o enum
+        /// <see cref="FormaPagamento"/>) de propósito: o XmlSerializer lança
+        /// InvalidOperationException e derruba a desserialização do documento
+        /// INTEIRO quando encontra um código fora da tabela oficial (ex.: "91",
+        /// visto em XMLs reais de campo) - um problema num campo secundário não
+        /// pode impedir a geração do DANFE inteiro. A conversão tolerante para
+        /// o enum de exibição (com fallback) fica em DanfeViewModelCreator.
         /// </summary>
-        public FormaPagamento tPag { get; set; }
+        public string tPag { get; set; }
 
         /// <summary>
         /// YA03 - Descrição do pagamento. Obrigatório quando <see cref="tPag"/>

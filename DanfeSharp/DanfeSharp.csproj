@@ -8,6 +8,7 @@
     <AssemblyName>DanfeSharpModern</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <LangVersion>latest</LangVersion>
+    <Version>1.0.4</Version>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>

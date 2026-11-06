@@ -11,6 +11,20 @@ namespace DanfeSharp.Modelo
 {
     public static class DanfeViewModelCreator
     {
+        /// <summary>
+        /// Converte o código bruto de tPag (string, ver <see cref="detPag.tPag"/>) para o enum de
+        /// exibição, caindo para "Outros" quando o código não é um dos definidos na tabela oficial
+        /// - em vez de lançar, como fazia a desserialização direta pro enum antes desta mudança.
+        /// </summary>
+        private static FormaPagamento ConverterFormaPagamento(string tPag)
+        {
+            if (int.TryParse(tPag, out var codigo) && Enum.IsDefined(typeof(FormaPagamento), codigo))
+                return (FormaPagamento)codigo;
+
+            return FormaPagamento.fpOutro;
+        }
+
+
         public readonly static IEnumerable<FormaEmissao> FormasEmissaoSuportadas = new FormaEmissao[]{ FormaEmissao.Normal, FormaEmissao.ContingenciaSVCAN, FormaEmissao.ContingenciaSVCRS };
 
         private static XmlSerializer ProcNFeSerializer = new XmlSerializer(typeof(ProcNFe));
@@ -324,7 +338,7 @@ namespace DanfeSharp.Modelo
                 {
                     var detalhe = new DetalheViewModel();
 
-                    detalhe.FormaPagamento = (FormaPagamento)detPag.tPag;
+                    detalhe.FormaPagamento = ConverterFormaPagamento(detPag.tPag);
                     detalhe.Descricao = String.IsNullOrEmpty(detPag.xPag) ? null : detPag.xPag;
                     detalhe.Valor = detPag.vPag;
 
@@ -615,7 +629,7 @@ namespace DanfeSharp.Modelo
                         foreach (var detPag in pag.detPag)
                         {
                             var detalhe = new DetalheViewModel();
-                            detalhe.FormaPagamento = (FormaPagamento)detPag.tPag;
+                            detalhe.FormaPagamento = ConverterFormaPagamento(detPag.tPag);
                             detalhe.Descricao = String.IsNullOrEmpty(detPag.xPag) ? null : detPag.xPag;
                             detalhe.Valor = detPag.vPag;
                             pagamento.DetalhePagamento.Add(detalhe);
